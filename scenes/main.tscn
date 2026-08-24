@@ -1,0 +1,605 @@
+[gd_scene format=3 uid="uid://vgwrcfy1qawf"]
+
+[ext_resource type="Script" uid="uid://bhxpbfpv2cpa2" path="res://scripts/Game.gd" id="1_a8y0u"]
+[ext_resource type="Environment" uid="uid://jbptgqvstei3" path="res://materials/main-environment.tres" id="1_yndf3"]
+[ext_resource type="Texture2D" uid="uid://d1muq7stxjo5s" path="res://ui/bloom.png" id="8_a8y0u"]
+[ext_resource type="Shader" uid="uid://dbtmjt3llybga" path="res://materials/grid.gdshader" id="10_choun"]
+[ext_resource type="Texture2D" uid="uid://bp1ig2th481cp" path="res://ui/level3.png" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://dp0ing5wvngxs" path="res://ui/menu.png" id="12_trceg"]
+[ext_resource type="Texture2D" uid="uid://dfo534cbnxp8q" path="res://ui/level2.png" id="13_jkv2x"]
+[ext_resource type="FontFile" uid="uid://sfseoo4x3x2a" path="res://fonts/SmoochSans-Regular.ttf" id="14_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://b7abmbwp8j6v7" path="res://ui/level1.png" id="14_jkv2x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgimb"]
+render_priority = 0
+shader = ExtResource("10_choun")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qhyo4"]
+material = SubResource("ShaderMaterial_fgimb")
+size = Vector2(100, 100)
+center_offset = Vector3(0, -0.01, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.9019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="Main" type="Node3D" unique_id=192579706]
+script = ExtResource("1_a8y0u")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=568643852]
+transform = Transform3D(-0.42261794, -0.6942719, 0.58256376, 0, 0.64278793, 0.7660442, -0.9063079, 0.32374403, -0.27165374, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="Camera" type="Camera3D" parent="." unique_id=476208433]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -24, 35, -14)
+environment = ExtResource("1_yndf3")
+projection = 1
+current = true
+fov = 20.0
+size = 12.4
+
+[node name="Grid" type="MeshInstance3D" parent="." unique_id=427691889]
+mesh = SubResource("PlaneMesh_qhyo4")
+metadata/_edit_lock_ = true
+
+[node name="GridMap" type="GridMap" parent="." unique_id=222758582]
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=209553100]
+
+[node name="AlarmUI" type="Control" parent="CanvasLayer" unique_id=152383234]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/AlarmUI" unique_id=2064782720]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8y0u")
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/AlarmUI" unique_id=1154563425]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = 15.0
+offset_right = 109.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "Charge again!"
+underline = 1
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/AlarmUI" unique_id=908087757]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = 69.0
+offset_right = 143.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "Freak out and quit!"
+underline = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/AlarmUI" unique_id=1482455281]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -188.0
+offset_right = 317.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+text = "You have been charged
+with criminal damage to private property!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="FinishedUI" type="Control" parent="CanvasLayer" unique_id=282847291]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/FinishedUI" unique_id=1313145650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8y0u")
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/FinishedUI" unique_id=90688020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = 15.0
+offset_right = 109.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "Keep charging!"
+underline = 1
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/FinishedUI" unique_id=814727727]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = 69.0
+offset_right = 143.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "Freak out and quit!"
+underline = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/FinishedUI" unique_id=614319434]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -188.0
+offset_right = 317.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 50
+text = "Well done!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TutorialStart" type="Control" parent="CanvasLayer" unique_id=86073928]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/TutorialStart" unique_id=868088968]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = 62.5
+offset_right = 39.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "                                     "
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/TutorialStart" unique_id=1816772100]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 106.0
+offset_right = 105.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "                                       "
+
+[node name="Level1Start" type="Control" parent="CanvasLayer" unique_id=1690484220]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/Level1Start" unique_id=15385224]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = 62.5
+offset_right = 39.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "              "
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/Level1Start" unique_id=729738995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 106.0
+offset_right = 105.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "                                       "
+
+[node name="Level2Start" type="Control" parent="CanvasLayer" unique_id=1771904372]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/Level2Start" unique_id=1911205567]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = 62.5
+offset_right = 39.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "              "
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/Level2Start" unique_id=740525416]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 106.0
+offset_right = 105.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "                                       "
+
+[node name="Level3Start" type="Control" parent="CanvasLayer" unique_id=568707471]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/Level3Start" unique_id=1348962881]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = 62.5
+offset_right = 39.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "              "
+
+[node name="LinkButton3" type="LinkButton" parent="CanvasLayer/Level3Start" unique_id=1443098861]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 106.0
+offset_right = 105.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/underline_spacing = 0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxFlat_jbj1t")
+text = "                                       "
+
+[node name="Bloom" type="TextureRect" parent="CanvasLayer" unique_id=476384196]
+anchors_preset = -1
+anchor_top = 0.009000001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -13.832001
+offset_right = 1152.0
+offset_bottom = 662.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("8_a8y0u")
+metadata/_edit_lock_ = true
+
+[node name="TutorialStart" type="Node3D" parent="." unique_id=1441834395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -14)
+
+[node name="Sprite3D3" type="Sprite3D" parent="TutorialStart" unique_id=287344108]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("12_trceg")
+
+[node name="Tutorial" type="Node3D" parent="." unique_id=331812964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="Tutorial" unique_id=827335441]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.71372986, 0, 1.9878541)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "This are private properties.
+You'll face charges if you smash these:"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+horizontal_alignment = 2
+
+[node name="Label3D7" type="Label3D" parent="Tutorial" unique_id=1691050327]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.3612938, 0, -0.003051877)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "This are your Chargers,
+deliver Power here:"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+horizontal_alignment = 2
+
+[node name="Label3D2" type="Label3D" parent="Tutorial" unique_id=1548782057]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -10.263416, 0, 3.3717098)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "This is Power Source:
+"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="Tutorial" unique_id=1412267]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -10.272366, 0, -4.9941573)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "Charge your both phones using your gear:"
+font = ExtResource("14_jbj1t")
+font_size = 150
+outline_size = 5
+horizontal_alignment = 0
+
+[node name="Label3D6" type="Label3D" parent="Tutorial" unique_id=557696582]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5.4963017, 0, -0.9839643)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "Click LMB to rotate, hold LMB to relocate.
+"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+
+[node name="Label3D4" type="Label3D" parent="Tutorial" unique_id=241529659]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.948414, 0, -3.1424384)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "Power Deflector
+redirects stream:
+"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+
+[node name="Label3D5" type="Label3D" parent="Tutorial" unique_id=57507597]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.0370255, 0, -3.142438)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0.49803922)
+text = "Power Splitter
+divides stream:
+"
+font = ExtResource("14_jbj1t")
+font_size = 100
+outline_size = 5
+
+[node name="Level1Start" type="Node3D" parent="." unique_id=1888791679]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, -9)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Level1Start" unique_id=1594807851]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("14_jkv2x")
+
+[node name="Level1" type="Node3D" parent="." unique_id=1697975615]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, -9)
+
+[node name="Level2Start" type="Node3D" parent="." unique_id=196856867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Level2Start" unique_id=840553110]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("13_jkv2x")
+
+[node name="Level2" type="Node3D" parent="." unique_id=629844075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 24)
+
+[node name="Level3Start" type="Node3D" parent="." unique_id=1811154157]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15, 0, 19)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Level3Start" unique_id=588182432]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("11_ya4ey")
+
+[node name="Level3" type="Node3D" parent="." unique_id=1438955736]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -29, 0, 18.966602)
+
+[connection signal="pressed" from="CanvasLayer/AlarmUI/LinkButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/FinishedUI/LinkButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/FinishedUI/LinkButton3" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialStart/LinkButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialStart/LinkButton3" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level1Start/LinkButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level1Start/LinkButton3" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level2Start/LinkButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level2Start/LinkButton3" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level3Start/LinkButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level3Start/LinkButton3" to="." method="_on_quit_pressed"]

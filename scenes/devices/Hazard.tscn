@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bcjry15ogbr7f"]
+
+[ext_resource type="Script" uid="uid://dwh78aeed8t6q" path="res://scripts/devices/Hazard.gd" id="1_u8nbr"]
+[ext_resource type="Material" uid="uid://d3eqmu8ehtupw" path="res://materials/hazard.tres" id="2_4ucs2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6deb"]
+material = ExtResource("2_4ucs2")
+size = Vector3(1, 0.4, 1)
+
+[node name="Hazard" type="Node3D" unique_id=2089143907]
+script = ExtResource("1_u8nbr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1995838273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_y6deb")

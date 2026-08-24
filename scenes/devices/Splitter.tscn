@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://de1grm4mq3gkq"]
+
+[ext_resource type="Script" uid="uid://c7223rvamukoq" path="res://scripts/devices/Splitter.gd" id="1_iyaam"]
+[ext_resource type="Material" uid="uid://cigrobhng5in5" path="res://materials/splitter.tres" id="2_1v5ms"]
+[ext_resource type="Material" uid="uid://cc65ewlbu5b6s" path="res://materials/base.tres" id="2_l0fom"]
+[ext_resource type="Material" uid="uid://0n0nsv7k330c" path="res://materials/dot.tres" id="3_i08md"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1v5ms"]
+material = ExtResource("2_l0fom")
+top_radius = 0.45
+bottom_radius = 0.45
+height = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4b7dp"]
+material = ExtResource("2_1v5ms")
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l0fom"]
+material = ExtResource("3_i08md")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.2
+radial_segments = 32
+
+[node name="Splitter" type="Node3D" unique_id=2089143907]
+script = ExtResource("1_iyaam")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1010036560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("CylinderMesh_1v5ms")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1624557878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_4b7dp")
+
+[node name="Dot" type="MeshInstance3D" parent="." unique_id=907415815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.25)
+mesh = SubResource("CylinderMesh_l0fom")
+
+[node name="Dot2" type="MeshInstance3D" parent="." unique_id=1702505034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
+mesh = SubResource("CylinderMesh_l0fom")

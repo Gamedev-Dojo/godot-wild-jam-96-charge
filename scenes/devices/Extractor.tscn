@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cbwjmlqepjq3u"]
+
+[ext_resource type="Script" uid="uid://7my6xdtnkuo1" path="res://scripts/devices/Extractor.gd" id="1_m1561"]
+[ext_resource type="Material" uid="uid://dvn1a0p51qwlr" path="res://materials/extractor.tres" id="2_4b7dp"]
+[ext_resource type="Material" uid="uid://bx0bdvor80256" path="res://materials/triangle.tres" id="3_fgpjd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4b7dp"]
+material = ExtResource("2_4b7dp")
+size = Vector3(1, 0.4, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_6ewau"]
+material = ExtResource("3_fgpjd")
+size = Vector3(0.5, 0.4, 0.2)
+
+[node name="Extractor" type="Node3D" unique_id=2089143907]
+script = ExtResource("1_m1561")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1995165569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_4b7dp")
+
+[node name="Dot" type="MeshInstance3D" parent="." unique_id=2050331583]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.5, -0.3)
+mesh = SubResource("PrismMesh_6ewau")

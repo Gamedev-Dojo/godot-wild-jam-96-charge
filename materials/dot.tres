@@ -1,0 +1,4 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://0n0nsv7k330c"]
+
+[resource]
+emission_enabled = true

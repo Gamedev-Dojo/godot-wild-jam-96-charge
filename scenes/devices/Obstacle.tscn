@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://8ti5m2ei1270"]
+
+[ext_resource type="Script" uid="uid://kxs7a7jmb2cc" path="res://scripts/devices/Obstacle.gd" id="1_qa72v"]
+[ext_resource type="Material" uid="uid://buc0m6ccayyjf" path="res://materials/obstacle.tres" id="2_ujt71"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6deb"]
+material = ExtResource("2_ujt71")
+size = Vector3(1, 0.4, 1)
+
+[node name="Obstacle" type="Node3D" unique_id=2089143907]
+script = ExtResource("1_qa72v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1995838273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_y6deb")

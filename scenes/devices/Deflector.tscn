@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bv7qwnb6x0fc7"]
+
+[ext_resource type="Script" uid="uid://dyoqgnr7t4ubk" path="res://scripts/devices/Deflector.gd" id="1_666km"]
+[ext_resource type="Material" uid="uid://bhvtgccgrkmly" path="res://materials/deflector.tres" id="2_87drr"]
+[ext_resource type="Material" uid="uid://0n0nsv7k330c" path="res://materials/dot.tres" id="3_nwqk1"]
+[ext_resource type="Material" uid="uid://cc65ewlbu5b6s" path="res://materials/base.tres" id="4_svcms"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_731y3"]
+material = ExtResource("3_nwqk1")
+top_radius = 0.45
+bottom_radius = 0.45
+height = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1v5ms"]
+material = ExtResource("2_87drr")
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.4
+radial_segments = 32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_svcms"]
+material = ExtResource("4_svcms")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.2
+radial_segments = 32
+
+[node name="Deflector" type="Node3D" unique_id=2089143907]
+script = ExtResource("1_666km")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1274965637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("CylinderMesh_731y3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1995838273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_1v5ms")
+
+[node name="Dot" type="MeshInstance3D" parent="." unique_id=1599917275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
+mesh = SubResource("CylinderMesh_svcms")
